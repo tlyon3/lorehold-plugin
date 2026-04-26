@@ -1,0 +1,45 @@
+# Build output (regenerated per release; assets are attached to GitHub releases)
+main.js
+*.map
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Test
+coverage/
+.nyc_output/
+
+# Obsidian per-vault state if anyone tests in-place
+data.json
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# Upstream developer-harness leftovers (not used in this fork)
+.igit
+.igitignore
+.githooks/
+.memory/
+.claude/
+agent-creds.toml
+AGENTS.md
+CLAUDE.md
+tickets/
+specs/
+unit/
+test-plans/
+test-results/
+prompts/
+vision/
+playwright/
+slots/
+vaults/
+obsidian-versions/
+.staging-only
+.nvmrc
+start-test.sh

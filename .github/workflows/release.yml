@@ -1,0 +1,41 @@
+name: Release
+
+# Triggered when a semver tag is pushed (e.g. `git tag 0.1.1 && git push origin 0.1.1`).
+# The job verifies the tag matches manifest.json's version, builds the plugin,
+# and publishes a GitHub Release with main.js / manifest.json / styles.css
+# attached. BRAT pulls these assets directly via the GitHub releases API.
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify tag matches manifest.json version
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          MANIFEST_VERSION="$(jq -r .version manifest.json)"
+          if [ "$TAG" != "$MANIFEST_VERSION" ]; then
+            echo "::error::Tag ($TAG) does not match manifest.json version ($MANIFEST_VERSION)."
+            exit 1
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - run: npm ci
+      - run: npm run release
+
+      - name: Publish GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "main.js,manifest.json,styles.css"
+          generateReleaseNotes: true
