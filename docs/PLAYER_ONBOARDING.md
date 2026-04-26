@@ -62,7 +62,7 @@ You should see notes appear within seconds. If the DM types in a shared note whi
 
 - **"Failed to connect"** — Tailscale may be down. Check menu-bar icon. If Tailscale is fine, the DM's home server might be down — message him.
 - **Login form won't open / errors on login** — toggle the plugin off then on (Settings → Community plugins → Lorehold). This forces a fresh load.
-- **Notes aren't appearing** — make sure you accepted the Tailscale invite *and* the server URL is correct (no typo). The plugin connects to both PocketBase (port 8090) and a relay server (port 8082) — both need to reach the home server.
+- **Notes aren't appearing** — make sure you accepted the Tailscale invite *and* the server URL is correct (no typo). The plugin connects to both PocketBase (port 8090) and a relay server (port 8081) — both need to reach the home server.
 - **BRAT didn't fetch the plugin** — open BRAT's settings (Settings → Community plugins → BRAT → ⚙) and check that `tlyon3/lorehold-plugin` is in the Beta Plugin List. If not, re-run "BRAT: Add a beta plugin for testing".
 - **Anything else** — paste the error from `Cmd+Opt+I` → Console tab to the DM.
 
